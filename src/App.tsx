@@ -7,7 +7,7 @@ import PublicRoute from "./components/PublicRoute";
 import ResetPassword from "./pages/ResetPassword";
 export default function App() {
   return (
-    <div className="App">
+    <>
       <Routes>
         <Route
           index
@@ -29,6 +29,6 @@ export default function App() {
 
         <Route path="forgot-password" element={<ResetPassword />} />
       </Routes>
-    </div>
+    </>
   );
 }

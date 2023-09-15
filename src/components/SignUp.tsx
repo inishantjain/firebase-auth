@@ -48,34 +48,22 @@ function SignUpForm() {
   };
 
   return (
-    <div className="form-container sign-up-container">
-      <form onSubmit={handleOnSubmit}>
-        <h1>Create Account</h1>
-        <div className="social-container">
-          <a href="#" className="social">
-            <i className="fab fa-facebook-f" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-google-plus-g" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-linkedin-in" />
-          </a>
-        </div>
-        <span>or use your email for registration</span>
-        <input type="email" name="email" value={state.email} onChange={handleChange} placeholder="Email" />
-        <input type="password" name="password" value={state.password} onChange={handleChange} placeholder="Password" />
-        <input
-          type="password"
-          name="confirmPassword"
-          value={state.confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm Password"
-        />
-        <button disabled={loading}>{loading ? "Loading... " : "Sign Up"}</button>
-        {error && <span style={{ color: "red" }}>{"Error :" + error}</span>}
-      </form>
-    </div>
+    <form className="sign-up-container" onSubmit={handleOnSubmit}>
+      <h1>Create Account</h1>
+      <input type="email" name="email" value={state.email} onChange={handleChange} placeholder="Email" />
+      <input type="password" name="password" value={state.password} onChange={handleChange} placeholder="Password" />
+      <input
+        type="password"
+        name="confirmPassword"
+        value={state.confirmPassword}
+        onChange={handleChange}
+        placeholder="Confirm Password"
+      />
+      <button className="submit-btn" disabled={loading}>
+        {loading ? "Loading... " : "Sign Up"}
+      </button>
+      {error && <span style={{ color: "red" }}>{"Error :" + error}</span>}
+    </form>
   );
 }
 

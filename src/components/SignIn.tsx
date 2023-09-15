@@ -31,8 +31,9 @@ function SignInForm() {
       await logIn(email, password);
       navigate("/");
     } catch (error: any) {
-      setError("Failed to create user :" + error.message);
+      setError("Failed to login :" + error.message);
     }
+    setLoading(false);
     for (const key in state) {
       setState({
         ...state,
@@ -42,28 +43,16 @@ function SignInForm() {
   };
 
   return (
-    <div className="form-container sign-in-container">
-      <form onSubmit={handleOnSubmit}>
-        <h1>Sign in</h1>
-        <div className="social-container">
-          <a href="#" className="social">
-            <i className="fab fa-facebook-f" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-google-plus-g" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-linkedin-in" />
-          </a>
-        </div>
-        <span>or use your account</span>
-        <input type="email" placeholder="Email" name="email" value={state.email} onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" value={state.password} onChange={handleChange} />
-        <Link to={"/forgot-password"}>Forgot your password?</Link>
-        <button disabled={loading}>{loading ? "Signing You In..." : "Sign In"}</button>
-        {error && <span style={{ color: "darkred" }}>{"Error :" + error}</span>}
-      </form>
-    </div>
+    <form className="sign-in-container" onSubmit={handleOnSubmit}>
+      <h1>Sign in</h1>
+      <input type="email" placeholder="Email" name="email" value={state.email} onChange={handleChange} />
+      <input type="password" name="password" placeholder="Password" value={state.password} onChange={handleChange} />
+      <Link to={"/forgot-password"}>Forgot your password?</Link>
+      <button className="submit-btn" disabled={loading}>
+        {loading ? "Signing You In..." : "Sign In"}
+      </button>
+      {error && <span style={{ color: "darkred" }}>{"Error :" + error}</span>}
+    </form>
   );
 }
 

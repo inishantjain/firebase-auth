@@ -1,4 +1,5 @@
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 function ResetPassword() {
   const [email, setEmail] = useState<string>("");
@@ -14,20 +15,23 @@ function ResetPassword() {
     } catch (error) {}
   };
   return (
-    <div className="resetPassword">
-      <h1>Please Enter Your Email to Reset Your Password!</h1>
-      <input
-        placeholder="Enter You Email Here"
-        onChange={(e) => setEmail(e.target.value)}
-        type="email"
-        name="email"
-        id="email"
-      />
-      {error && <span style={{ color: "honeydew" }}>{"Error :" + error}</span>}
-      {isResetLinkSend && <span style={{ color: "whitesmoke" }}>{"Reset link has been sent to you email."}</span>}
-      <button onClick={handleResetPassword} disabled={isResetLinkSend}>
-        {"Reset Password"}
-      </button>
+    <div className="container form-container">
+      <div className="resetPassword">
+        <h1>Please Enter Your Email to Reset Your Password!</h1>
+        <input
+          placeholder="Enter You Email Here"
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          name="email"
+          id="email"
+        />
+        {error && <span style={{ color: "honeydew" }}>{"Error :" + error}</span>}
+        {isResetLinkSend && <span style={{ color: "whitesmoke" }}>{"Reset link has been sent to you email!"}</span>}
+        <button className="submit-btn" onClick={handleResetPassword} disabled={isResetLinkSend}>
+          {"Reset Password"}
+        </button>
+        <Link to={"/auth"}>Return to Login</Link>
+      </div>
     </div>
   );
 }
